@@ -11,6 +11,11 @@ public class Student {
     private int course;
     private List<Book> books = new LinkedList<>();
 
+    public Student() {
+    }
+
+    public Student(String firstName, String lastName) {}
+
     public Student(String firstName, String lastName, int age, int course) {
         this.firstName = firstName;
         this.lastName = lastName;
