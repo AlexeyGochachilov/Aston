@@ -13,4 +13,21 @@ public class Book {
         this.YEAR_OF_PUBLISHING = yearOfPublishing;
         this.QUANTITU_OF_PAGES = quantityOfPages;
     }
+
+    public String getNAME() {
+        return NAME;
+    }
+
+    public String getAUTHOR() {
+        return AUTHOR;
+    }
+
+    public int getYEAR_OF_PUBLISHING() {
+        return YEAR_OF_PUBLISHING;
+    }
+
+    public int getQUANTITU_OF_PAGES() {
+        return QUANTITU_OF_PAGES;
+    }
+
 }

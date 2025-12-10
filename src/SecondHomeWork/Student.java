@@ -28,6 +28,10 @@ public class Student {
         }
     }
 
+    public Book getBook(int id) {
+        return books.get(id);
+    }
+
     public void addBook(Book book) {
         books.add(book);
     }
