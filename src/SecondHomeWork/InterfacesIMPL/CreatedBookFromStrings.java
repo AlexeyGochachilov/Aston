@@ -1,7 +1,6 @@
 package SecondHomeWork.InterfacesIMPL;
 
 import SecondHomeWork.Classes.Book;
-import SecondHomeWork.Classes.Student;
 import SecondHomeWork.Interfaces.CreatedClassFromStrings;
 
 public class CreatedBookFromStrings implements CreatedClassFromStrings<Book> {
