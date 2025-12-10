@@ -50,7 +50,7 @@ public class Student {
     }
 
     public void addAllBooks(List<Book> books) {
-        this.books.addAll(books);
+        this.books.addAll(new LinkedList<>(books));
     }
 
     public void showAllBooks() {
@@ -60,8 +60,7 @@ public class Student {
     }
 
     public void setBooks(List<Book> newBooks) {
-        books.clear();
-        books.addAll(newBooks);
+        this.books = new LinkedList<>(newBooks);
     }
 
     public void removeBook(int index) {
