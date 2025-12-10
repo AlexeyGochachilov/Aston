@@ -19,17 +19,20 @@ public class Student {
     }
 
     public List<Book> getBooks() {
+        List<Book> copy = new LinkedList<>();
         if (!books.isEmpty()) {
-            List<Book> copy = new LinkedList<>();
             copy.addAll(books);
-            return copy;
-        } else {
-            return null;
         }
+        return copy;
+
     }
 
     public Book getBook(int id) {
-        return books.get(id);
+        Book book = null;
+        if (id < books.size()) {
+            book = books.get(id);
+        }
+        return book;
     }
 
     public void addBook(Book book) {
