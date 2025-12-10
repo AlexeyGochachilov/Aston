@@ -39,7 +39,7 @@ public class Student {
 
     public Book getBook(int id) {
         Book book = null;
-        if (id < books.size()) {
+        if (id >= 0 && id < books.size()) {
             book = books.get(id);
         }
         return book;
@@ -61,7 +61,17 @@ public class Student {
 
     public void setBooks(List<Book> newBooks) {
         books.clear();
-        books.addAll(newBooks); // для полной замены
+        books.addAll(newBooks);
+    }
+
+    public void removeBook(int index) {
+        if (index >= 0 && index < books.size()) {
+            books.remove(index);
+        }
+    }
+
+    public void removeAllBooks() {
+        books.clear();
     }
 
     @Override
