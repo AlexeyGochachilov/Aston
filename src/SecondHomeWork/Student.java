@@ -59,7 +59,10 @@ public class Student {
         }
     }
 
-
+    public void setBooks(List<Book> newBooks) {
+        books.clear();
+        books.addAll(newBooks); // для полной замены
+    }
 
     @Override
     public String toString() {
