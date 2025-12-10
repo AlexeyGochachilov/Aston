@@ -18,6 +18,17 @@ public class Student {
         this.course = course;
     }
 
+    public Student(String firstName, String lastName, int age, int course, List<Book> books) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.course = course;
+        if (books.size() >= 5) {
+            this.books = books;
+        } else
+            System.out.println("There should be at least five books");
+    }
+
     public List<Book> getBooks() {
         List<Book> copy = new LinkedList<>();
         if (!books.isEmpty()) {
