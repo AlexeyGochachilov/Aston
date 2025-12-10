@@ -24,7 +24,6 @@ public class Student {
             copy.addAll(books);
         }
         return copy;
-
     }
 
     public Book getBook(int id) {
@@ -41,5 +40,15 @@ public class Student {
 
     public void addAllBooks(List<Book> books) {
         this.books.addAll(books);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", course=" + course +
+                '}';
     }
 }
