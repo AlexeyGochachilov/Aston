@@ -1,4 +1,4 @@
-package SecondHomeWork;
+package SecondHomeWork.Classes;
 
 import java.util.Objects;
 

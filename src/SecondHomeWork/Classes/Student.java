@@ -1,4 +1,4 @@
-package SecondHomeWork;
+package SecondHomeWork.Classes;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,10 +23,7 @@ public class Student {
         this.lastName = lastName;
         this.age = age;
         this.course = course;
-        if (books.size() >= 5) {
-            this.books = books;
-        } else
-            System.out.println("There should be at least five books");
+        this.addAllBooks(books);
     }
 
     public List<Book> getBooks() {
