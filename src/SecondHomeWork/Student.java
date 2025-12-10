@@ -53,6 +53,14 @@ public class Student {
         this.books.addAll(books);
     }
 
+    public void showAllBooks() {
+        for (Book book : books) {
+            System.out.println(book);
+        }
+    }
+
+
+
     @Override
     public String toString() {
         return "Student{" +
@@ -62,4 +70,5 @@ public class Student {
                 ", course=" + course +
                 '}';
     }
+
 }
