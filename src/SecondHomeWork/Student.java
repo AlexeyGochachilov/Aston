@@ -27,4 +27,12 @@ public class Student {
             return null;
         }
     }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public void addAllBooks(List<Book> books) {
+        this.books.addAll(books);
+    }
 }
