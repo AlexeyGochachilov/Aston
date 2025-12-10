@@ -1,33 +1,56 @@
 package SecondHomeWork;
 
+import java.util.Objects;
+
 public class Book {
 
-    private final String NAME;
-    private final String AUTHOR;
-    private final int YEAR_OF_PUBLISHING;
-    private final int QUANTITU_OF_PAGES;
+    private final String name;
+    private final String author;
+    private final int yearOfPublishing;
+    private final int quantityOfPages;
 
     public Book(String name, String author, int yearOfPublishing, int quantityOfPages) {
-        this.NAME = name;
-        this.AUTHOR = author;
-        this.YEAR_OF_PUBLISHING = yearOfPublishing;
-        this.QUANTITU_OF_PAGES = quantityOfPages;
+        this.name = name;
+        this.author = author;
+        this.yearOfPublishing = yearOfPublishing;
+        this.quantityOfPages = quantityOfPages;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public String getAUTHOR() {
-        return AUTHOR;
+    public String getAuthor() {
+        return author;
     }
 
-    public int getYEAR_OF_PUBLISHING() {
-        return YEAR_OF_PUBLISHING;
+    public int getYearOfPublishing() {
+        return yearOfPublishing;
     }
 
-    public int getQUANTITU_OF_PAGES() {
-        return QUANTITU_OF_PAGES;
+    public int getQuantityOfPages() {
+        return quantityOfPages;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return yearOfPublishing == book.yearOfPublishing && quantityOfPages == book.quantityOfPages && Objects.equals(name, book.name) && Objects.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, yearOfPublishing, quantityOfPages);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", yearOfPublishing=" + yearOfPublishing +
+                ", quantityOfPages=" + quantityOfPages +
+                '}';
+    }
 }
