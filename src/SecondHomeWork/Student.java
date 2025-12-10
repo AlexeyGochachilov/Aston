@@ -1,5 +1,6 @@
 package SecondHomeWork;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Student {
@@ -8,12 +9,22 @@ public class Student {
     private String lastName;
     private int age;
     private int course;
-    private List<Book> books;
+    private List<Book> books = new LinkedList<>();
 
     public Student(String firstName, String lastName, int age, int course) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.course = course;
+    }
+
+    public List<Book> getBooks() {
+        if (!books.isEmpty()) {
+            List<Book> copy = new LinkedList<>();
+            copy.addAll(books);
+            return copy;
+        } else {
+            return null;
+        }
     }
 }
