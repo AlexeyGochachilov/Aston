@@ -1,7 +1,6 @@
 package SecondHomeWork.Classes;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Student {
 
@@ -60,6 +59,25 @@ public class Student {
 
     public void removeAllBooks() {
         books.clear();
+    }
+
+    public void receiveRandomBooks(List<Book> allBooks, int minBooks, int maxBooks) {
+        if (allBooks == null || allBooks.size() < minBooks) {
+            System.out.println("Недостаточно книг для распределения");
+            return;
+        }
+
+        this.removeAllBooks();
+
+        List<Book> shuffledBooks = new ArrayList<>(allBooks);
+        Collections.shuffle(shuffledBooks);
+
+        Random random = new Random();
+        int booksCount = random.nextInt(Math.min(maxBooks, shuffledBooks.size()) - minBooks + 1) + minBooks;
+
+        for (int i = 0; i < booksCount; i++) {
+            this.addBook(shuffledBooks.get(i));
+        }
     }
 
     @Override
