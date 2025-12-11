@@ -10,13 +10,15 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        Path pathin = Path.of("src/SecondHomeWork/resource/dataFile.txt");
+        Path pathIn = Path.of("src/SecondHomeWork/resource/dataFile.txt");
         WorkWithFile<Student> studentParser = new WorkWithFile<>(CreatorFactory.getStudentCreator());
         WorkWithFile<Book> bookParser = new WorkWithFile<>(CreatorFactory.getBookCreator());
-        List<Student> studentList = studentParser.creatingListFromFile(pathin.toString(), " ");
-        List<Book> bookList = bookParser.creatingListFromFile(pathin.toString(), "; ");
+        List<Student> studentList = studentParser.creatingListFromFile(pathIn.toString(), " ");
+        List<Book> bookList = bookParser.creatingListFromFile(pathIn.toString(), "; ");
+
         for (Student student : studentList) {
             student.receiveRandomBooks(bookList, 5, bookList.size());
         }
@@ -29,10 +31,10 @@ public class Main {
                 .filter(book -> book.getYearOfPublishing() > 2000)
                 .limit(3)
                 .map(Book::getYearOfPublishing)
-                .findAny()
+                .findFirst()
                 .ifPresentOrElse(
-                        year -> System.out.println("Найден год: " + year),
-                        () -> System.out.println("Книга не найдена")
+                        year -> System.out.println("A book with a year of release " + year + " has been found."),
+                        () -> System.out.println("The book was not found")
                 );
     }
 }

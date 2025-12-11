@@ -11,12 +11,12 @@ import java.util.List;
 public class WorkWithFile<T> {
 
     private final CreatedClassFromStrings<T> created;
+
     public WorkWithFile(CreatedClassFromStrings<T> created) {
         this.created = created;
     }
 
     public List<T> creatingListFromFile(String filePath, String delimiter) {
-
         List<T> tList = new LinkedList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
