@@ -9,13 +9,6 @@ public class Book {
     private final int yearOfPublishing;
     private final int quantityOfPages;
 
-    public Book(){
-        name = "";
-        author = "";
-        yearOfPublishing = 0;
-        quantityOfPages = 0;
-    }
-
     public Book(String name, String author, int yearOfPublishing, int quantityOfPages) {
         this.name = name;
         this.author = author;
