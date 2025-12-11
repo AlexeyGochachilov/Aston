@@ -1,6 +1,7 @@
 package SecondHomeWork.Classes;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Student {
 
@@ -41,12 +42,6 @@ public class Student {
         this.books.addAll(new LinkedList<>(books));
     }
 
-    public void showAllBooks() {
-        for (Book book : books) {
-            System.out.println(book);
-        }
-    }
-
     public void setBooks(List<Book> newBooks) {
         this.books = new LinkedList<>(newBooks);
     }
@@ -61,7 +56,7 @@ public class Student {
         books.clear();
     }
 
-    public void receiveRandomBooks(List<Book> allBooks, int minBooks, int maxBooks) {
+    public void assignRandomBooks(List<Book> allBooks, int minBooks, int maxBooks) {
         if (allBooks == null || allBooks.size() < minBooks) {
             System.out.println("Do not have enough books");
             return;
@@ -79,23 +74,21 @@ public class Student {
     @Override
     public String toString() {
         if (!books.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            for(Book book : books){
-                sb.append(book.toString()).append("\n");}
-            return "Student{" +
-                    "firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", age=" + age +
-                    ", course=" + course +
-                    '}' + "\n" +
-                    sb.toString();
+            return toDetailedString();
         } else {
-            return "Student{" +
-                    "firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", age=" + age +
-                    ", course=" + course +
-                    '}';
+            return toFormattedString();
         }
+    }
+
+    private String toFormattedString() {
+        return String.format("Student{firstName='%s', lastName='%s', age=%d, course=%d}",
+                firstName, lastName, age, course);
+    }
+
+    private String toDetailedString() {
+        return toFormattedString() + "\nBooks:\n" +
+                books.stream()
+                        .map(Book::toString)
+                        .collect(Collectors.joining("\n"));
     }
 }

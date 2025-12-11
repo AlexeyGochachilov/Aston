@@ -16,11 +16,11 @@ public class Main {
         Path pathIn = Path.of("src/SecondHomeWork/resource/dataFile.txt");
         WorkWithFile<Student> studentParser = new WorkWithFile<>(CreatorFactory.getStudentCreator());
         WorkWithFile<Book> bookParser = new WorkWithFile<>(CreatorFactory.getBookCreator());
-        List<Student> studentList = studentParser.creatingListFromFile(pathIn.toString(), " ");
-        List<Book> bookList = bookParser.creatingListFromFile(pathIn.toString(), "; ");
+        List<Student> studentList = studentParser.createListFromFile(pathIn.toString(), " ");
+        List<Book> bookList = bookParser.createListFromFile(pathIn.toString(), "; ");
 
         for (Student student : studentList) {
-            student.receiveRandomBooks(bookList, 5, bookList.size());
+            student.assignRandomBooks(bookList, 5, bookList.size());
         }
 
         studentList.stream()

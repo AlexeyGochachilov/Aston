@@ -16,19 +16,19 @@ public class WorkWithFile<T> {
         this.created = created;
     }
 
-    public List<T> creatingListFromFile(String filePath, String delimiter) {
-        List<T> tList = new LinkedList<>();
+    public List<T> createListFromFile(String filePath, String delimiter) {
+        List<T> resultList = new LinkedList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] tConstr = line.trim().split(delimiter);
-                if (tConstr.length != 4) {
+                String[] parts = line.trim().split(delimiter);
+                if (parts.length != 4) {
                     continue;
                 }
                 try {
-                    T t = created.createdClassFromString(tConstr);
+                    T t = created.createdClassFromString(parts);
                     if (t != null) {
-                        tList.add(t);
+                        resultList.add(t);
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid number format in line: " + line);
@@ -37,6 +37,6 @@ public class WorkWithFile<T> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return tList;
+        return resultList;
     }
 }

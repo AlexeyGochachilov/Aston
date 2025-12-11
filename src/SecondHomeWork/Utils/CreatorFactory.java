@@ -12,8 +12,8 @@ public class CreatorFactory {
                 return new Student(
                         strings[0],
                         strings[1],
-                        extractNumber(strings[2]),
-                        extractNumber(strings[3])
+                        extractFirstInteger(strings[2]),
+                        extractFirstInteger(strings[3])
                 );
             }
             return null;
@@ -26,15 +26,15 @@ public class CreatorFactory {
                 return new Book(
                         cleanName(strings[0]),
                         cleanAuthor(strings[1]),
-                        extractNumber(strings[2]),
-                        extractNumber(strings[3])
+                        extractFirstInteger(strings[2]),
+                        extractFirstInteger(strings[3])
                 );
             }
             return null;
         };
     }
 
-    private static int extractNumber(String text) {
+    private static int extractFirstInteger(String text) {
         String numbersOnly = text.replaceAll("\\D+", " ").trim();
         if (numbersOnly.isEmpty()) return 0;
         return Integer.parseInt(numbersOnly.split(" ")[0]);
