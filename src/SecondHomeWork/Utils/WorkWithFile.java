@@ -11,7 +11,6 @@ import java.util.List;
 public class WorkWithFile<T> {
 
     private final CreatedClassFromStrings<T> created;
-
     public WorkWithFile(CreatedClassFromStrings<T> created) {
         this.created = created;
     }
@@ -19,13 +18,9 @@ public class WorkWithFile<T> {
     public List<T> creatingListFromFile(String filePath, String delimiter) {
 
         List<T> tList = new LinkedList<>();
-
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-
             String line;
-
             while ((line = reader.readLine()) != null) {
-
                 String[] tConstr = line.trim().split(delimiter);
                 if (tConstr.length != 4) {
                     continue;
@@ -42,7 +37,6 @@ public class WorkWithFile<T> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return tList;
     }
 }
