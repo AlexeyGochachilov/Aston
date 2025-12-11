@@ -10,12 +10,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Path pathin = Path.of("src/SecondHomeWork/resourse/dataFile.txt");
+        Path pathin = Path.of("src/SecondHomeWork/resource/dataFile.txt");
         WorkWithFile<Student> studentParser = new WorkWithFile<>(CreatorFactory.getStudentCreator());
         WorkWithFile<Book> bookParser = new WorkWithFile<>(CreatorFactory.getBookCreator());
         List<Student> studentList = studentParser.creatingListFromFile(pathin.toString(), " ");
         List<Book> bookList = bookParser.creatingListFromFile(pathin.toString(), "; ");
-        System.out.println(studentList);
-        System.out.println(bookList);
+        for (Student student : studentList) {
+            student.receiveRandomBooks(bookList, 5, bookList.size());
+        }
+
     }
 }
