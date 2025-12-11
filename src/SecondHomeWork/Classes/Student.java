@@ -25,10 +25,10 @@ public class Student {
         return copy;
     }
 
-    public Book getBook(int id) {
+    public Book getBook(int index) {
         Book book = null;
-        if (id >= 0 && id < books.size()) {
-            book = books.get(id);
+        if (index >= 0 && index < books.size()) {
+            book = books.get(index);
         }
         return book;
     }
@@ -63,18 +63,14 @@ public class Student {
 
     public void receiveRandomBooks(List<Book> allBooks, int minBooks, int maxBooks) {
         if (allBooks == null || allBooks.size() < minBooks) {
-            System.out.println("Недостаточно книг для распределения");
+            System.out.println("Do not have enough books");
             return;
         }
-
         this.removeAllBooks();
-
         List<Book> shuffledBooks = new ArrayList<>(allBooks);
         Collections.shuffle(shuffledBooks);
-
         Random random = new Random();
         int booksCount = random.nextInt(Math.min(maxBooks, shuffledBooks.size()) - minBooks + 1) + minBooks;
-
         for (int i = 0; i < booksCount; i++) {
             this.addBook(shuffledBooks.get(i));
         }
@@ -82,12 +78,24 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", course=" + course +
-                '}';
+        if (!books.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for(Book book : books){
+                sb.append(book.toString()).append("\n");}
+            return "Student{" +
+                    "firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", age=" + age +
+                    ", course=" + course +
+                    '}' + "\n" +
+                    sb.toString();
+        } else {
+            return "Student{" +
+                    "firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", age=" + age +
+                    ", course=" + course +
+                    '}';
+        }
     }
-
 }
