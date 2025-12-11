@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 
 public class Student {
 
-    private String firstName;
-    private String lastName;
-    private int age;
-    private int course;
+    private final String firstName;
+    private final String lastName;
+    private final int age;
+    private final int course;
     private List<Book> books = new LinkedList<>();
 
     public Student(String firstName, String lastName, int age, int course) {

@@ -1,5 +1,6 @@
 package SecondHomeWork.Utils;
 
+import SecondHomeWork.Exception.DataParseException;
 import SecondHomeWork.Interfaces.CreatedClassFromStrings;
 
 import java.io.BufferedReader;
@@ -7,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import static SecondHomeWork.Classes.Constants.EXPECTED_PARTS_COUNT;
 
 public class WorkWithFile<T> {
 
@@ -22,7 +25,7 @@ public class WorkWithFile<T> {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.trim().split(delimiter);
-                if (parts.length != 4) {
+                if (parts.length != EXPECTED_PARTS_COUNT) {
                     continue;
                 }
                 try {
@@ -35,7 +38,7 @@ public class WorkWithFile<T> {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DataParseException("Failed to read file: " + filePath, e);
         }
         return resultList;
     }
