@@ -36,7 +36,10 @@ public class Book {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return yearOfPublishing == book.yearOfPublishing && quantityOfPages == book.quantityOfPages && Objects.equals(name, book.name) && Objects.equals(author, book.author);
+        return yearOfPublishing == book.yearOfPublishing
+                && quantityOfPages == book.quantityOfPages
+                && Objects.equals(name, book.name)
+                && Objects.equals(author, book.author);
     }
 
     @Override
