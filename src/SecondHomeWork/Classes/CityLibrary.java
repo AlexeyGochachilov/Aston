@@ -37,7 +37,6 @@ public class CityLibrary extends Library {
             System.out.println("Do not have enough books");
             return;
         }
-        student.removeAllBooks();
         List<Book> shuffledBooks = new ArrayList<>(books);
         Collections.shuffle(shuffledBooks);
         Random random = new Random();
