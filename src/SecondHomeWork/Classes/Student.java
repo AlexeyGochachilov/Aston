@@ -56,21 +56,6 @@ public class Student {
         books.clear();
     }
 
-    public void assignRandomBooks(List<Book> allBooks, int minBooks, int maxBooks) {
-        if (allBooks == null || allBooks.size() < minBooks) {
-            System.out.println("Do not have enough books");
-            return;
-        }
-        this.removeAllBooks();
-        List<Book> shuffledBooks = new ArrayList<>(allBooks);
-        Collections.shuffle(shuffledBooks);
-        Random random = new Random();
-        int booksCount = random.nextInt(Math.min(maxBooks, shuffledBooks.size()) - minBooks + 1) + minBooks;
-        for (int i = 0; i < booksCount; i++) {
-            this.addBook(shuffledBooks.get(i));
-        }
-    }
-
     @Override
     public String toString() {
         if (!books.isEmpty()) {

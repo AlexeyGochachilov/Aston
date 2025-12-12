@@ -1,6 +1,8 @@
 package SecondHomeWork;
 
 import SecondHomeWork.Classes.Book;
+import SecondHomeWork.Classes.CityLibrary;
+import SecondHomeWork.Classes.Library;
 import SecondHomeWork.Classes.Student;
 import SecondHomeWork.Parsers.ParserFactory;
 import SecondHomeWork.Utils.WorkWithFile;
@@ -20,9 +22,10 @@ public class Main {
         WorkWithFile<Book> bookParser = new WorkWithFile<>(ParserFactory.getBookParser());
         List<Student> studentList = studentParser.createListFromFile(pathIn.toString(), " ");
         List<Book> bookList = bookParser.createListFromFile(pathIn.toString(), "; ");
+        Library cityLibrary = new CityLibrary(bookList);
 
         for (Student student : studentList) {
-            student.assignRandomBooks(bookList, MIN_BOOKS_PER_STUDENT, bookList.size());
+            cityLibrary.assignRandomBooks(student, MIN_BOOKS_PER_STUDENT, bookList.size());
         }
 
         studentList.stream()
