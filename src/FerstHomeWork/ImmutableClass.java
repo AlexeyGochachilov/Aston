@@ -1,3 +1,5 @@
+package FerstHomeWork;
+
 public final class ImmutableClass {
 
     private final Mutable mutable;
