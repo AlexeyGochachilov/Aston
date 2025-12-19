@@ -7,11 +7,12 @@ import third.strategy.topping.Milk;
 import third.strategy.topping.Sugar;
 import third.strategy.topping.Syrup;
 
-public class UseCoffeeMachine {
+public class ShowStrategy {
 
     public static void main(String[] args) {
 
-        CoffeeMachine coffeeMachine = new CoffeeMachine();
+        CoffeeMachineFromStrategy coffeeMachine = new CoffeeMachineFromStrategy();
+
         coffeeMachine.selectCoffee(new BlackCoffeeStrategy());
         coffeeMachine.addTopping(new Milk());
         coffeeMachine.startPreparingCoffee();

@@ -6,23 +6,23 @@ import third.strategy.topping.Topping;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CoffeeMachine {
+import static third.Constants.CHAIN_NOT_INITIALIZED;
+import static third.Constants.PLEASE_SELECT_COFFEE;
+import static third.Constants.PUT_DOWN_CUP;
+
+public class CoffeeMachineFromChainOfResponsibilities {
 
     private CoffeeType selectedCoffeeType;
     private final List<Topping> toppings;
     private BaristaChain baristaChain;
 
-    private static final String PLEASE_SELECT_COFFEE = "Please firstly select a coffee";
-    private static final String PUT_DOWN_CUP = "put down a paper cup";
-    private static final String CHAIN_NOT_INITIALIZED = "Barista chain is not initialized";
-
-    public CoffeeMachine() {
+    public CoffeeMachineFromChainOfResponsibilities() {
         this.toppings = new LinkedList<>();
         this.baristaChain = new BaristaChain();
         System.out.println("CoffeeMachine: Initialized with a barista chain");
     }
 
-     public CoffeeMachine(BaristaChain baristaChain) {
+     public CoffeeMachineFromChainOfResponsibilities(BaristaChain baristaChain) {
         this.toppings = new LinkedList<>();
         this.baristaChain = baristaChain;
         System.out.println("CoffeeMachine: Initialized with a custom chain");

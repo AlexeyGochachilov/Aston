@@ -6,14 +6,15 @@ import third.strategy.topping.Topping;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CoffeeMachine {
+import static third.Constants.PLEASE_SELECT_COFFEE;
+import static third.Constants.PUT_DOWN_CUP;
+
+public class CoffeeMachineFromStrategy {
 
     private CoffeeStrategy coffeeStrategy;
     private final List<Topping> toppings;
-    private static final String PLEASE_SELECT_COFFEE = "Please firstly select a coffee";
-    private static final String PUT_DOWN_CUP = "put down a paper cup";
 
-    public CoffeeMachine() {
+    public CoffeeMachineFromStrategy() {
         this.toppings = new LinkedList<>();
     }
 

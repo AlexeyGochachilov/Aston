@@ -7,10 +7,11 @@ import third.strategy.topping.Milk;
 import third.strategy.topping.Sugar;
 import third.strategy.topping.Syrup;
 
-public class UseCoffeeMachine {
+public class ShowChainOfResponsibilities {
     public static void main(String[] args) {
 
-        CoffeeMachine coffeeMachine = new CoffeeMachine();
+        CoffeeMachineFromChainOfResponsibilities coffeeMachine = new CoffeeMachineFromChainOfResponsibilities();
+
         coffeeMachine.selectCoffee(CoffeeType.BLACK_COFFEE);
         coffeeMachine.addTopping(new Milk());
         coffeeMachine.startPreparingCoffee();
@@ -31,7 +32,7 @@ public class UseCoffeeMachine {
         coffeeMachine.startPreparingCoffee();
 
         BaristaChain customChain = new BaristaChain(new SeniorBarista());
-        CoffeeMachine premiumMachine = new CoffeeMachine(customChain);
+        CoffeeMachineFromChainOfResponsibilities premiumMachine = new CoffeeMachineFromChainOfResponsibilities(customChain);
 
         premiumMachine.selectCoffee(CoffeeType.BLACK_COFFEE);
         premiumMachine.startPreparingCoffee();
