@@ -2,6 +2,8 @@ package third.chainOfResponsibilities.barista;
 
 import third.chainOfResponsibilities.CoffeeRequest;
 
+import static third.Constants.SEPARATOR;
+
 public class BaristaChain {
 
     private Barista firstBarista;
@@ -38,11 +40,11 @@ public class BaristaChain {
     }
 
     public boolean handleRequest(CoffeeRequest request) {
-        System.out.println("\n═══════════════════════════════════════");
+        System.out.println("\n" + SEPARATOR);
         System.out.println("START OF ORDER PROCESSING");
         System.out.println("Order: " + request.getCoffeeType().getDisplayName());
         System.out.println("Toppings: " + request.getToppings().size());
-        System.out.println("═══════════════════════════════════════");
+        System.out.println(SEPARATOR);
         if (firstBarista == null) {
             System.err.println("ERROR: The barista chain is not initialized!");
             return false;

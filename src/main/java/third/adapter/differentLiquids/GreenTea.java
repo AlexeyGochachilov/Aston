@@ -4,6 +4,7 @@ public class GreenTea extends Tea {
 
     @Override
     public void prepareBeverage() {
-        System.out.println("Preparing Green Tea");
+        tea();
+        System.out.println("Green Tea");
     }
 }
