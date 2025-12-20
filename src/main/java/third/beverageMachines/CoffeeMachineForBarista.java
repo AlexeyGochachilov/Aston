@@ -6,6 +6,7 @@ import third.chainOfResponsibilities.barista.BaristaChain;
 import third.strategy.topping.Topping;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import static third.Constants.CHAIN_NOT_INITIALIZED;
 import static third.Constants.PLEASE_SELECT_COFFEE;
@@ -33,16 +34,7 @@ public class CoffeeMachineForBarista extends CoffeeMachine {
             throw new IllegalArgumentException("Coffee type cannot be null");
         }
         this.selectedCoffeeType = coffeeType;
-        this.toppings.clear();
-        System.out.printf("%nSelect Coffee: %s%n", coffeeType.getDisplayName());
-    }
-
-    public void addTopping(Topping topping) {
-        if (topping != null) {
-            toppings.add(topping);
-            System.out.printf("Select topping: %s%n",
-                    topping.getClass().getSimpleName());
-        }
+        super.toppings.clear();
     }
 
     public void startPreparingCoffee() {
@@ -54,6 +46,7 @@ public class CoffeeMachineForBarista extends CoffeeMachine {
             System.out.println(CHAIN_NOT_INITIALIZED);
             return;
         }
+        showInfoInRecipe(selectedCoffeeType, toppings);
         System.out.println(PUT_DOWN_CUP);
         CoffeeRequest request = new CoffeeRequest(selectedCoffeeType, toppings);
         boolean success = baristaChain.handleRequest(request);
@@ -61,6 +54,13 @@ public class CoffeeMachineForBarista extends CoffeeMachine {
             toppings.clear();
             selectedCoffeeType = null;
         }
+    }
+
+    private void showInfoInRecipe(CoffeeType coffeeType, List<Topping> toppings) {
+        System.out.printf("%nSelect Coffee: %s%n", coffeeType.getDisplayName());
+        toppings.forEach(topping ->
+                System.out.printf("Select topping: %s%n", topping.getClass().getSimpleName()));
+
     }
 
     public void setBaristaChain(BaristaChain baristaChain) {
@@ -76,7 +76,6 @@ public class CoffeeMachineForBarista extends CoffeeMachine {
         if (selectedCoffeeType == null) {
             return "No coffee selected";
         }
-        return String.format("Coffee: %s, Toppings: %d",
-                selectedCoffeeType.getDisplayName(), toppings.size());
+        return String.format("Coffee: %s, Toppings: %d", selectedCoffeeType.getDisplayName(), toppings.size());
     }
 }
