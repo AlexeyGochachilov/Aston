@@ -8,7 +8,7 @@ import third.strategy.coffee.CoffeeStrategy;
 import third.strategy.coffee.LatteStrategy;
 import third.strategy.coffee.CoffeeFactory;
 
-import static third.Constants.SEPARATOR;
+import static third.Constants.SEPARATORLINE;
 
 public class SeniorBarista extends AbstractBarista{
 
@@ -74,6 +74,6 @@ public class SeniorBarista extends AbstractBarista{
     protected void logCompletion(CoffeeRequest request) {
         super.logCompletion(request);
         System.out.println("[Senior Barista] Enjoy the highest quality coffee!");
-        System.out.println(SEPARATOR);
+        System.out.println(SEPARATORLINE);
     }
 }

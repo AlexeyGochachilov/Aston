@@ -1,4 +1,4 @@
-package third.adapter;
+package third.beverageMachines;
 
 import third.strategy.coffee.CoffeeStrategy;
 
@@ -9,7 +9,7 @@ import static third.Constants.PUT_DOWN_CUP;
 
 public class BeverageMachine {
 
-    private CoffeeStrategy beverageStrategy;
+    protected CoffeeStrategy beverageStrategy;
 
     public void selectBeverage(CoffeeStrategy strategy) {
         beverageStrategy = strategy;

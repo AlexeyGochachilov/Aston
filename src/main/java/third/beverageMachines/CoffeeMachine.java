@@ -1,4 +1,4 @@
-package third.strategy;
+package third.beverageMachines;
 
 import third.strategy.coffee.CoffeeStrategy;
 import third.strategy.topping.Topping;
@@ -9,17 +9,16 @@ import java.util.List;
 import static third.Constants.PLEASE_SELECT_COFFEE;
 import static third.Constants.PUT_DOWN_CUP;
 
-public class CoffeeMachineFromStrategy {
+public class CoffeeMachine extends BeverageMachine{
 
-    private CoffeeStrategy coffeeStrategy;
-    private final List<Topping> toppings;
+    protected List<Topping> toppings;
 
-    public CoffeeMachineFromStrategy() {
+    public CoffeeMachine() {
         this.toppings = new LinkedList<>();
     }
 
     public void selectCoffee(CoffeeStrategy coffeeStrategy) {
-        this.coffeeStrategy = coffeeStrategy;
+        super.selectBeverage(coffeeStrategy);
         this.toppings.clear();
     }
 
@@ -30,12 +29,12 @@ public class CoffeeMachineFromStrategy {
     }
 
     public void startPreparingCoffee() {
-        if (coffeeStrategy == null) {
+        if (beverageStrategy == null) {
             System.out.println(PLEASE_SELECT_COFFEE);
             return;
         }
         System.out.println(PUT_DOWN_CUP);
-        coffeeStrategy.prepare(new LinkedList<>(toppings));
+        beverageStrategy.prepare(new LinkedList<>(toppings));
         toppings.clear();
     }
 }

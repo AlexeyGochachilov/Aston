@@ -1,5 +1,6 @@
 package third.chainOfResponsibilities;
 
+import third.beverageMachines.CoffeeMachineForBarista;
 import third.chainOfResponsibilities.barista.BaristaChain;
 import third.chainOfResponsibilities.barista.JuniorBarista;
 import third.chainOfResponsibilities.barista.SeniorBarista;
@@ -10,7 +11,7 @@ import third.strategy.topping.Syrup;
 public class ShowChainOfResponsibilities {
     public static void main(String[] args) {
 
-        CoffeeMachineFromChainOfResponsibilities coffeeMachine = new CoffeeMachineFromChainOfResponsibilities();
+        CoffeeMachineForBarista coffeeMachine = new CoffeeMachineForBarista();
 
         coffeeMachine.selectCoffee(CoffeeType.BLACK_COFFEE);
         coffeeMachine.addTopping(new Milk());
@@ -32,7 +33,7 @@ public class ShowChainOfResponsibilities {
         coffeeMachine.startPreparingCoffee();
 
         BaristaChain customChain = new BaristaChain(new SeniorBarista());
-        CoffeeMachineFromChainOfResponsibilities premiumMachine = new CoffeeMachineFromChainOfResponsibilities(customChain);
+        CoffeeMachineForBarista premiumMachine = new CoffeeMachineForBarista(customChain);
 
         premiumMachine.selectCoffee(CoffeeType.BLACK_COFFEE);
         premiumMachine.startPreparingCoffee();
