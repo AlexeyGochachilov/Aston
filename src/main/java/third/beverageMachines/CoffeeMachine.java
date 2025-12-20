@@ -1,16 +1,15 @@
 package third.beverageMachines;
 
-import third.chainOfResponsibilities.CoffeeType;
 import third.decorator.DecoratedCoffeeFactory;
 import third.decorator.Size;
+import third.decorator.SizeDecorator;
 import third.strategy.coffee.CoffeeStrategy;
 import third.strategy.topping.Topping;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static third.Constants.PLEASE_SELECT_COFFEE;
-import static third.Constants.PUT_DOWN_CUP;
+import static third.Constants.*;
 
 public class CoffeeMachine extends BeverageMachine{
 
@@ -27,23 +26,11 @@ public class CoffeeMachine extends BeverageMachine{
         this.toppings.clear();
     }
 
-    public void selectCoffee(CoffeeType type, Size size) {
-        switch (type) {
-            case BLACK_COFFEE:
-                super.beverageStrategy = DecoratedCoffeeFactory.createBlackCoffee(size);
-                break;
-            case CAPPUCCINO:
-                super.beverageStrategy = DecoratedCoffeeFactory.createCappuccino(size);
-                break;
-            case LATTE:
-                super.beverageStrategy = DecoratedCoffeeFactory.createLatte(size);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown coffee type: " + type);
-        }
+    public void selectCoffee(String coffeeType, Size size) {
+        beverageStrategy = DecoratedCoffeeFactory.createCoffee(coffeeType, size);
         this.selectedSize = size;
         this.toppings.clear();
-        System.out.printf("Selected %s in %s size%n", type, size.getDisplayName());
+        System.out.printf("Selected %s in %s size%n", coffeeType, size.getDisplayName());
     }
 
     public void setSize(Size size) {
@@ -51,8 +38,8 @@ public class CoffeeMachine extends BeverageMachine{
             throw new IllegalArgumentException("Size cannot be null");
         }
         this.selectedSize = size;
-        if (super.beverageStrategy != null) {
-            super.beverageStrategy = DecoratedCoffeeFactory.decorateWithSize(super.beverageStrategy, size);
+        if (beverageStrategy != null) {
+            beverageStrategy = DecoratedCoffeeFactory.decorateWithSize(beverageStrategy, size);
             System.out.printf("Size updated to: %s%n", size.getDisplayName());
         }
     }
@@ -64,12 +51,59 @@ public class CoffeeMachine extends BeverageMachine{
     }
 
     public void startPreparingCoffee() {
-        if (super.beverageStrategy == null) {
+        if (beverageStrategy == null) {
             System.out.println(PLEASE_SELECT_COFFEE);
             return;
         }
         System.out.println(PUT_DOWN_CUP);
-        super.beverageStrategy.prepare(new LinkedList<>(toppings));
+        List<Topping> toppingsCopy = new LinkedList<>(toppings);
+        beverageStrategy.prepare(toppingsCopy);
+        clearOrder();
+    }
+
+    public double calculateTotalCost() {
+        if (beverageStrategy == null) {
+            return 0.0;
+        }
+        double total = BASE_COFFEE_PRICE;
+        total += toppings.size() * TOPPING_PRICE;
+        if (beverageStrategy instanceof SizeDecorator) {
+            SizeDecorator sizeDecorator = (SizeDecorator) beverageStrategy;
+            total += sizeDecorator.getSizeCostAdjustment();
+        }
+        return total;
+    }
+
+    public String getOrderInfo() {
+        if (beverageStrategy == null) {
+            return "No coffee selected";
+        }
+        String coffeeType = beverageStrategy.getClass().getSimpleName()
+                .replace("Strategy", "")
+                .replace("SizeDecorator", "");
+        StringBuilder info = new StringBuilder();
+        info.append(String.format("Coffee: %s%n", coffeeType));
+        info.append(String.format("Size: %s%n", selectedSize.getDisplayName()));
+        info.append(String.format("Toppings: %d%n", toppings.size()));
+        info.append(String.format("Total cost: $%.2f", calculateTotalCost()));
+        return info.toString();
+    }
+
+    private void clearOrder() {
         toppings.clear();
+        beverageStrategy = null;
+        selectedSize = Size.MEDIUM;
+    }
+
+    public Size getSelectedSize() {
+        return selectedSize;
+    }
+
+    public List<Topping> getToppings() {
+        return new LinkedList<>(toppings); // Возвращаем копию
+    }
+
+    public boolean hasSelectedCoffee() {
+        return beverageStrategy != null;
     }
 }
