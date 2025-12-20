@@ -8,7 +8,7 @@ import third.strategy.topping.Milk;
 import third.strategy.topping.Sugar;
 import third.strategy.topping.Syrup;
 
-import static third.Constants.SEPARATORLINE;
+import static third.Constants.SEPARATOR_LINE;
 
 public class ShowStrategy {
 
@@ -20,13 +20,13 @@ public class ShowStrategy {
         coffeeMachine.addTopping(new Milk());
         coffeeMachine.startPreparingCoffee();
 
-        System.out.println(SEPARATORLINE);
+        System.out.println(SEPARATOR_LINE);
 
         coffeeMachine.selectCoffee(CoffeeFactory.createLatte(new Sugar()));
         coffeeMachine.addTopping(new Milk());
         coffeeMachine.startPreparingCoffee();
 
-        System.out.println(SEPARATORLINE);
+        System.out.println(SEPARATOR_LINE);
 
         coffeeMachine.selectCoffee(new CappuccinoStrategy());
         coffeeMachine.addTopping(new Sugar());
