@@ -16,15 +16,16 @@ public class CoffeeMachineForBarista extends CoffeeMachine {
 
     private CoffeeType selectedCoffeeType;
     private BaristaChain baristaChain;
+    private List<Topping> toppings;
 
     public CoffeeMachineForBarista() {
-        super.toppings = new LinkedList<>();
+        this.toppings = new LinkedList<>();
         this.baristaChain = new BaristaChain();
         System.out.println("CoffeeMachine: Initialized with a barista chain");
     }
 
      public CoffeeMachineForBarista(BaristaChain baristaChain) {
-        super.toppings = new LinkedList<>();
+        this.toppings = new LinkedList<>();
         this.baristaChain = baristaChain;
         System.out.println("CoffeeMachine: Initialized with a custom chain");
     }
@@ -34,7 +35,7 @@ public class CoffeeMachineForBarista extends CoffeeMachine {
             throw new IllegalArgumentException("Coffee type cannot be null");
         }
         this.selectedCoffeeType = coffeeType;
-        super.toppings.clear();
+        this.toppings.clear();
     }
 
     public void startPreparingCoffee() {
