@@ -6,6 +6,8 @@ import third.strategy.topping.Topping;
 import java.util.*;
 
 import static third.Constants.*;
+import static third.builder.CoffeeValidation.validateTemperature;
+import static third.builder.CoffeeValidation.validateToppingsForTeleportation;
 
 public class Coffee {
 
@@ -57,6 +59,11 @@ public class Coffee {
         return coffeeBeans != null && coffeeBeans.split(" ").length > 1;
     }
 
+    public void validateForTeleportation() {
+        validateTemperature(this.temperature);
+        validateToppingsForTeleportation(this.toppings);
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -97,9 +104,7 @@ public class Coffee {
         }
 
         public Builder withTemperature(int temperature) {
-            if (temperature < LOW_TEMPERATURE || temperature > HIGH_TEMPERATURE) {
-                throw new IllegalArgumentException("Temperature must be between 60 and 100 degrees");
-            }
+            validateTemperature(temperature);
             this.temperature = temperature;
             return this;
         }
