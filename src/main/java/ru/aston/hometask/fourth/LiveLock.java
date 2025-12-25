@@ -1,53 +1,59 @@
 package ru.aston.hometask.fourth;
 
 public class LiveLock {
-
-    private static int counter = 0;
-    private static boolean canIncrease = true;
-    private static boolean canDecrease = false;
-    private static final Object lock = new Object();
+    static boolean resource1Busy = false;
+    static boolean resource2Busy = false;
 
     public static void main(String[] args) {
-
-        Thread thread1 = new Thread(() -> {
+        Thread t1 = new Thread(() -> {
             while (true) {
-                synchronized (lock) {
-                    if (canIncrease) {
-                        counter++;
-                        System.out.println(counter);
-                        canIncrease = false;
-                        canDecrease = true;
+                if (!resource1Busy) {
+                    resource1Busy = true;
+                    System.out.println("Thread 1: Captured resource1");
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
                     }
-                    if (counter >= 100) {
-                        System.out.println("The limit has been reached, resetting counter");
-                        counter = 0;
-                        canIncrease = true;
-                        canDecrease = false;
+                    if (!resource2Busy) {
+                        resource2Busy = true;
+                        System.out.println("Thread 1: Captured resource2 and working");
+                        resource2Busy = false;
                     }
+                    resource1Busy = false;
+                    System.out.println("Thread 1: Released resource1");
                 }
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                 }
             }
         });
-        Thread thread2 = new Thread(() -> {
+
+        Thread t2 = new Thread(() -> {
             while (true) {
-                synchronized (lock) {
-                    if (canDecrease) {
-                        counter--;
-                        System.out.println(counter);
-                        canDecrease = false;
-                        canIncrease = true;
-                    }
+                if (!resource2Busy) {
+                    resource2Busy = true;
+                    System.out.println("Thread 2: Captured resource2");
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                     }
+                    if (!resource1Busy) {
+                        resource1Busy = true;
+                        System.out.println("Thread 2: Captured resource1 and working");
+                        resource1Busy = false;
+                    }
+                    resource2Busy = false;
+                    System.out.println("Thread 2: Released resource2");
+                }
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
                 }
             }
         });
-        thread1.start();
-        thread2.start();
+
+        t1.start();
+        t2.start();
     }
 }
