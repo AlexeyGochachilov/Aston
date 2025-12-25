@@ -3,16 +3,18 @@ package ru.aston.hometask.fourth;
 public class Infinity {
 
     static int number = 1;
+    final static int FOR_THREAD_ONE = 1;
+    final static int FOR_THREAD_TWO = 2;
 
-    public synchronized void showNumberOne() {
-        showNumber(1);
-        number++;
+    public synchronized void forThreadOne() {
+        showNumber(FOR_THREAD_ONE);
+        increment();
         notify();
     }
 
-    public synchronized void showNumberTwo() {
-        showNumber(2);
-        number--;
+    public synchronized void forThreadTwo() {
+        showNumber(FOR_THREAD_TWO);
+        decrement();
         notify();
     }
 
@@ -25,6 +27,14 @@ public class Infinity {
             }
         }
         System.out.println(Thread.currentThread().getName() + " print number " + number);
+    }
+
+    private void increment () {
+        number++;
+    }
+
+    private void decrement () {
+        number--;
     }
 
     public static void main(String[] args) {
@@ -51,7 +61,7 @@ class ShowNumberOne implements Runnable {
     @Override
     public void run() {
         while (true) {
-            infinity.showNumberOne();
+            infinity.forThreadOne();
         }
     }
 }
@@ -67,7 +77,7 @@ class ShowNumberTwo implements Runnable {
     @Override
     public void run() {
         while (true) {
-            infinity.showNumberTwo();
+            infinity.forThreadTwo();
         }
     }
 }
