@@ -4,17 +4,6 @@ public class Infinity {
 
     static int number = 1;
 
-    private void showNumber(int i) {
-        while (number != i) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println(Thread.currentThread().getName() + " print number " + number);
-    }
-
     public synchronized void showNumberOne() {
         showNumber(1);
         number++;
@@ -25,6 +14,17 @@ public class Infinity {
         showNumber(2);
         number--;
         notify();
+    }
+
+    private void showNumber(int i) {
+        while (number != i) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println(Thread.currentThread().getName() + " print number " + number);
     }
 
     public static void main(String[] args) {
