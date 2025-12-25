@@ -39,7 +39,7 @@ public class DeadLock {
         t2.start();
 
         try {
-            Thread.sleep(5000); // Ждем 5 секунд
+            Thread.sleep(5000);
             System.out.println("Program not end, it's DEAD_LOCK!");
         } catch (InterruptedException e) {
             e.printStackTrace();
