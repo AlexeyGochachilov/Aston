@@ -32,8 +32,10 @@ public class AlternatingNumberPrinter {
     public static void main(String[] args) {
 
         AlternatingNumberPrinter numberPrinter = new AlternatingNumberPrinter();
-        Thread threadOne = new Thread(new ShowNumber(numberPrinter, AlternatingNumberPrinter.FOR_THREAD_ONE));
-        Thread threadTwo = new Thread(new ShowNumber(numberPrinter, AlternatingNumberPrinter.FOR_THREAD_TWO));
+        Thread threadOne = new Thread(new ShowNumber(numberPrinter, AlternatingNumberPrinter.FOR_THREAD_ONE),
+                "Thread 1");
+        Thread threadTwo = new Thread(new ShowNumber(numberPrinter, AlternatingNumberPrinter.FOR_THREAD_TWO),
+                "Thread 2");
         threadOne.start();
         threadTwo.start();
     }
