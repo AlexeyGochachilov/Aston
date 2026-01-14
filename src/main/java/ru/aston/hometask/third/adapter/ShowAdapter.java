@@ -4,7 +4,6 @@ import ru.aston.hometask.third.adapter.differentLiquids.BlackTea;
 import ru.aston.hometask.third.adapter.differentLiquids.GreenTea;
 import ru.aston.hometask.third.adapter.differentLiquids.HotWater;
 import ru.aston.hometask.third.adapter.differentLiquids.IcedTea;
-import third.adapter.differentLiquids.*;
 import ru.aston.hometask.third.beverageMachines.CoffeeMachine;
 
 import static ru.aston.hometask.third.Constants.SEPARATOR_LINE;
